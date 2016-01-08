@@ -1,11 +1,13 @@
 #ifndef WINDOWMANAGER_H
 #define WINDOWMANAGER_H
 
-class WindowManager {
+#include "x11windowmanager.h"
+
+class WindowManager: public X11WindowManager {
     public:
         WindowManager();
         ~WindowManager();
-        void run();
+        //void run();
 };
 
 

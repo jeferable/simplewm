@@ -1,7 +1,7 @@
 CC=g++
-CFLAGS=-c -Wall -lglog
+CFLAGS=-c -Wall
 LDFLAGS=-lglog -lX11
-SOURCES=main.cpp windowmanager.cpp
+SOURCES=main.cpp windowmanager.cpp x11abstractapplication.cpp x11display.cpp x11windowmanager.cpp x11window.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=simplewm
 
