@@ -15,17 +15,16 @@ class X11WindowManager: public X11AbstractApplication{
         X11WindowManager();
         virtual ~X11WindowManager();
         int run();
-     private:
+        void init();
+    private:
         Atom WM_PROTOCOLS;
         Atom WM_DELETE_WINDOW;
         X11Display* display;
-	X11Window* rootWindow;
+	    X11Window* rootWindow;
         std::map<Window, X11Window*> windowsMap;
         void checkWM();
         void fetchWindows();
-        void onKeyPress(const XKeyEvent& e);
         static int onWMDetected(Display* display, XErrorEvent* event);
-        static int onXError(Display* display, XErrorEvent* event);
 };
 
 #endif //X11WINDOWMANAGER_H

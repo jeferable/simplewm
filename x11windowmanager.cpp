@@ -15,9 +15,7 @@ X11WindowManager::~X11WindowManager() {
     windowsMap.clear();
 }
 
-int X11WindowManager::run() {
-    try {
-        display = new X11Display;
+int X11WindowManager::init() {
         rootWindow = display->getDefaultRootWindow();
         WM_PROTOCOLS = XInternAtom(display->getDisplayId(),
                        "WM_PROTOCOLS", false);
@@ -26,35 +24,6 @@ int X11WindowManager::run() {
         checkWM();
         XSetErrorHandler(&X11WindowManager::onXError);
         fetchWindows();
-        bool running = true;
-        while(running) {
-            XEvent e;
-            XNextEvent(display->getDisplayId(), &e);
-            switch(e.type) {
-                case CreateNotify: break;
-                case DestroyNotify: break;
-                case ReparentNotify: break;
-                case MapNotify: break;
-                case UnmapNotify: break;
-                case ConfigureNotify: break;
-                case ButtonPress: break;
-                case ButtonRelease: break;
-                case MotionNotify:  break;
-                case KeyPress:
-                    onKeyPress(e.xkey);
-                    break;
-                case KeyRelease: break;
-                default: ;
-            }
-        }
-        return 0;
-    }
-    catch (std::exception &ex)
-    {
-        ///LOG(INFO)
-        std::cout << ex.what()<< std::endl;
-        return -1;
-    }
 }
 
 void X11WindowManager::checkWM()
@@ -98,22 +67,8 @@ void X11WindowManager::fetchWindows() {
     XUngrabServer(display->getDisplayId());
 }
 
-void X11WindowManager::onKeyPress(const XKeyEvent& e) {
-    if (e.state & Mod1Mask){
-        if (e.keycode == XKeysymToKeycode(display->getDisplayId(), XK_F4))
-            LOG(INFO) << "The command Alt + F4 has been pressed";
-        if (e.keycode == XKeysymToKeycode(display->getDisplayId(), XK_Tab))
-            LOG(INFO) << "The command Alt + TAB has been pressed";
-    }
-}
-
 int X11WindowManager::onWMDetected(Display* display, XErrorEvent* event)
 {
     throw 1999; //Throwing an error
-    return 0;
-}
-
-int X11WindowManager::onXError(Display* display, XErrorEvent* event)
-{
     return 0;
 }
