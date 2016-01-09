@@ -1,5 +1,6 @@
 
 #include "x11display.h"
+#include "x11exception.h"
 
 #include <X11/Xlib.h>
 
@@ -8,8 +9,8 @@
 X11Display::X11Display()
 {
     display = XOpenDisplay(NULL);
-    if (display==NULL) //std::cout << "Failed to open display\n";
-        throw 234;//X11DisplayError(FAILED_TO_OPEN);
+    if (display==NULL)
+        throw X11Exception("Failed to open display");
 }
 
 X11Display::~X11Display()
