@@ -6,7 +6,6 @@
 #include "x11window.h"
 
 #include <map>
-#include <glog/logging.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 
