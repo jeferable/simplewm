@@ -1,6 +1,6 @@
 #include "windowmanager.h"
 
-#include <glog/logging.h>
+
 
 
 int main(int argc, char* argv[])
