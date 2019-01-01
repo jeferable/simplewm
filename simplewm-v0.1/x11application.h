@@ -27,10 +27,10 @@ class  X11Application: protected X11Object {
         virtual void onConfigureNotify(X11ConfigureEvent e);
         virtual void onMapRequest(X11MapRequestEvent e);
         virtual void onConfigureRequest(X11ConfigureRequestEvent e);
-        virtual void onButtonPress(X11ButtonPressEvent e);
+        virtual void onButtonPress(X11ButtonEvent e);
         virtual void onMotionNotify(X11MotionEvent e);
-        virtual void onKeyPress(X11KeyPressEvent e);
-        virtual void onKeyRelease(X11KeyReleaseEvent e);
+        virtual void onKeyPress(X11KeyEvent e);
+        virtual void onKeyRelease(X11KeyEvent e);
 
 
         void openDisplay();
