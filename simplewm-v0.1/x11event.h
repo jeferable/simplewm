@@ -3,7 +3,11 @@
 
 #include "x11object.h"
 
-class X11Event: X11Object;
+class X11Event: X11Object {
+    public:
+        X11Event();
+        `X11Event();
+}
 
 class X11CreateEvent: X11Event {
     public:
@@ -71,7 +75,7 @@ class X11KeyEvent: X11Event {
         ~X11KeyEvent();
 };
 
-class X11Event: X11Object {
+class X11EventFactory: X11Object {
     public:
         X11Event()
         ~X11Event() 
