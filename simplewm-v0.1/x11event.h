@@ -3,6 +3,8 @@
 
 #include "x11object.h"
 
+#include <X11/Xlib.h>
+
 class X11Event: X11Object {
     public:
         X11Event();
