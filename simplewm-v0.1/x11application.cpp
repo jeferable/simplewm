@@ -37,46 +37,46 @@ void X11Application::eventLoop() {
         XNextEvent(display->getDisplayId(), &e);
         switch (e.type) {
             case CreateNotify:
-                onCreateNotify(X11Event::event(e.xcreatewindow));
+                onCreateNotify(X11EventFactoryFactory::event(e.xcreatewindow));
                 break;
             case DestroyNotify:
-                onDestroyNotify(X11Event::event(e.xdestroywindow));
+                onDestroyNotify(X11EventFactory::event(e.xdestroywindow));
                 break;
             case ReparentNotify:
-                onReparentNotify(X11Event::event(e.xreparent));
+                onReparentNotify(X11EventFactory::event(e.xreparent));
                 break;
             case MapNotify:
-                onMapNotify(X11Event::event(e.xmap));
+                onMapNotify(X11EventFactory::event(e.xmap));
                 break;
             case UnmapNotify:
-                onUnmapNotify(X11Event::event(e.xunmap));
+                onUnmapNotify(X11EventFactory::event(e.xunmap));
                 break;
             case ConfigureNotify:
-                onConfigureNotify(X11Event::event(e.xconfigure));
+                onConfigureNotify(X11EventFactory::event(e.xconfigure));
                 break;
             case MapRequest:
-                onMapRequest(X11Event::event(e.xmaprequest));
+                onMapRequest(X11EventFactory::event(e.xmaprequest));
                 break;
             case ConfigureRequest:
-                onConfigureRequest(X11Event::event(e.xconfigurerequest));
+                onConfigureRequest(X11EventFactory::event(e.xconfigurerequest));
                 break;
             case ButtonPress:
-                onButtonPress(X11Event::event(e.xbutton));
+                onButtonPress(X11EventFactory::event(e.xbutton));
                 break;
             case ButtonRelease:
-                onButtonRelease(X11Event::event(e.xbutton));
+                onButtonRelease(X11EventFactory::event(e.xbutton));
                 break;
             case MotionNotify:
                 // Skip any already pending motion events.
                 while (XCheckTypedWindowEvent(
                 display_, e.xmotion.window, MotionNotify, &e)) {}
-                onMotionNotify(X11Event::event(e.xmotion));
+                onMotionNotify(X11EventFactory::event(e.xmotion));
                 break;
             case KeyPress:
-                onKeyPress(X11Event::event(e.xkey));
+                onKeyPress(X11EventFactory::event(e.xkey));
                 break;
             case KeyRelease:
-                onKeyRelease(X11Event::event(e.xkey));
+                onKeyRelease(X11EventFactory::event(e.xkey));
                 break;
             default:
                 LOG(WARNING) << "Ignored event";
@@ -84,40 +84,40 @@ void X11Application::eventLoop() {
     }
 }
 
-void onCreateNotify(X11CreateEvent e) {
+void X11Application::onCreateNotify(X11CreateEvent e) {
 }
 
-void onDestroyNotify(X11DestroyEvent e){
+void X11Application::onDestroyNotify(X11DestroyEvent e){
 }
 
-void onReparentNotify(X11ReparentEvent e){
+void X11Application::onReparentNotify(X11ReparentEvent e){
 }
 
-void onMapNotify(X11MapEvent e){
+void X11Application::onMapNotify(X11MapEvent e){
 }
 
-void onUnmapNotify(X11UnmapEvent e){
+void X11Application::onUnmapNotify(X11UnmapEvent e){
 }
 
-void onConfigureNotify(X11ConfigureEvent e){
+void X11Application::onConfigureNotify(X11ConfigureEvent e){
 }
 
-void onMapRequest(X11MapRequestEvent e){
+void X11Application::onMapRequest(X11MapRequestEvent e){
 }
 
-void onConfigureRequest(X11ConfigureRequestEvent e){
+void X11Application::onConfigureRequest(X11ConfigureRequestEvent e){
 }
 
-void onButtonPress(X11ButtonPressEvent e){
+void X11Application::onButtonPress(X11ButtonEvent e){
 }
 
-void onMotionNotify(X11MotionEvent e){
+void X11Application::onMotionNotify(X11MotionEvent e){
 }
 
-void onKeyPress(X11KeyPressEvent e){
+void X11Application::onKeyPress(X11KeyEvent e){
 }
 
-void onKeyRelease(X11KeyReleaseEvent e){
+void X11Application::onKeyRelease(X11KeyEvent e){
 }
 
 void X11Application::init(){
