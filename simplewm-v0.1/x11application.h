@@ -28,6 +28,7 @@ class  X11Application: protected X11Object {
         virtual void onMapRequest(X11MapRequestEvent e);
         virtual void onConfigureRequest(X11ConfigureRequestEvent e);
         virtual void onButtonPress(X11ButtonEvent e);
+        virtual void onButtonRelease(X11ButtonEvent e);
         virtual void onMotionNotify(X11MotionEvent e);
         virtual void onKeyPress(X11KeyEvent e);
         virtual void onKeyRelease(X11KeyEvent e);

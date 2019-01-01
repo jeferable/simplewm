@@ -37,7 +37,7 @@ void X11Application::eventLoop() {
         XNextEvent(display->getDisplayId(), &e);
         switch (e.type) {
             case CreateNotify:
-                onCreateNotify(X11EventFactoryFactory::event(e.xcreatewindow));
+                onCreateNotify(X11EventFactory::event(e.xcreatewindow));
                 break;
             case DestroyNotify:
                 onDestroyNotify(X11EventFactory::event(e.xdestroywindow));
@@ -69,7 +69,7 @@ void X11Application::eventLoop() {
             case MotionNotify:
                 // Skip any already pending motion events.
                 while (XCheckTypedWindowEvent(
-                display_, e.xmotion.window, MotionNotify, &e)) {}
+                display->getDisplayId(), e.xmotion.window, MotionNotify, &e)) {}
                 onMotionNotify(X11EventFactory::event(e.xmotion));
                 break;
             case KeyPress:
@@ -109,6 +109,9 @@ void X11Application::onConfigureRequest(X11ConfigureRequestEvent e){
 }
 
 void X11Application::onButtonPress(X11ButtonEvent e){
+}
+
+void X11Application::onButtonRelease(X11ButtonEvent e){
 }
 
 void X11Application::onMotionNotify(X11MotionEvent e){
