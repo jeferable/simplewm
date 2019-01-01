@@ -1,11 +1,13 @@
 
 #include "x11display.h"
 
+#include <exception>
+
 X11Display::X11Display(const char* str)
 {
     display = XOpenDisplay(str);
     if (display == nullptr)
-        throw "Failed to open display";
+        throw std::exception("Failed to open display");
 }
 
 X11Display::~X11Display()

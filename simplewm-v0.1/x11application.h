@@ -3,6 +3,7 @@
 
 #include "x11object.h"
 #include "x11display.h"
+#include "x11event.h"
 
 class  X11Application: protected X11Object {
     public:
@@ -17,6 +18,21 @@ class  X11Application: protected X11Object {
         virtual void init();
         virtual void onCloseApplication();
         virtual void onInitialized();
+
+        virtual void onCreateNotify(X11CreateEvent e);
+        virtual void onDestroyNotify(X11DestroyEvent e);
+        virtual void onReparentNotify(X11ReparentEvent e);
+        virtual void onMapNotify(X11MapEvent e);
+        virtual void onUnmapNotify(X11UnmapEvent e);
+        virtual void onConfigureNotify(X11ConfigureEvent e);
+        virtual void onMapRequest(X11MapRequestEvent e);
+        virtual void onConfigureRequest(X11ConfigureRequestEvent e);
+        virtual void onButtonPress(X11ButtonPressEvent e);
+        virtual void onMotionNotify(X11MotionEvent e);
+        virtual void onKeyPress(X11KeyPressEvent e);
+        virtual void onKeyRelease(X11KeyReleaseEvent e);
+
+
         void openDisplay();
 };
 
