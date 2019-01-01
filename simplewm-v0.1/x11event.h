@@ -77,8 +77,8 @@ class X11KeyEvent: X11Event {
 
 class X11EventFactory: X11Object {
     public:
-        X11Event()
-        ~X11Event() 
+        X11EventFactory();
+        ~X11EventFactory(); 
         static X11CreateEvent event(const XCreateWindowEvent& e);
         static X11DestroyEvent event(const XDestroyWindowEvent& e);
         static X11ReparentEvent event(const XReparentEvent& e);
