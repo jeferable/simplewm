@@ -6,8 +6,8 @@
 class X11Event: X11Object {
     public:
         X11Event();
-        `X11Event();
-}
+        ~X11Event();
+};
 
 class X11CreateEvent: X11Event {
     public:
