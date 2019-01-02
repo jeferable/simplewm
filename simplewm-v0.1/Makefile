@@ -12,5 +12,6 @@ $(EXECUTABLE): $(OBJECTS)
 
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
+.PHONY : clean
 clean:
 	rm *.o build/simplewm 

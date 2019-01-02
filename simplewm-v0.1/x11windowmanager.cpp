@@ -26,10 +26,17 @@ void X11WindowManager::frameWindow(Window w, bool createdBeforeWM) {
         BORDER_WIDTH,
         BORDER_COLOR,
         BG_COLOR);
+    const Window frameTitle = XCreateSimpleWindow(
+        display->getDisplayId(),
+        frame,
+        0, 0,
+        x_window_attrs.width, 50,
+        0, 0, BORDER_COLOR);
+    );
     XSelectInput(display->getDisplayId(), frame, 
                  SubstructureRedirectMask | SubstructureNotifyMask);
     XAddToSaveSet(display->getDisplayId(), w);
-    XReparentWindow(display->getDisplayId(), w, frame, 0, 0);
+    XReparentWindow(display->getDisplayId(), w, frame, 0, 50);
     XMapWindow(display->getDisplayId(), frame);
     
 }
