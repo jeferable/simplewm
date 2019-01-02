@@ -4,9 +4,10 @@
 
 
 void X11WindowManager::frameWindow(Window w, bool createdBeforeWM) {
-    const unsigned int BORDER_WIDTH = 3;
-    const unsigned long BORDER_COLOR = 0xff0000;
+    const unsigned int BORDER_WIDTH = 1;
+    const unsigned long BORDER_COLOR = 0xeeeeee;
     const unsigned long BG_COLOR = 0xeeeeee;
+    const unsigned long TITLE_HEIGHT = 20;
 
     XWindowAttributes x_window_attrs;
     XGetWindowAttributes(display->getDisplayId(), w, &x_window_attrs);
@@ -22,7 +23,7 @@ void X11WindowManager::frameWindow(Window w, bool createdBeforeWM) {
         x_window_attrs.x,
         x_window_attrs.y,
         x_window_attrs.width,
-        x_window_attrs.height,
+        x_window_attrs.height+TITLE_HEIGHT,
         BORDER_WIDTH,
         BORDER_COLOR,
         BG_COLOR);
@@ -30,13 +31,20 @@ void X11WindowManager::frameWindow(Window w, bool createdBeforeWM) {
         display->getDisplayId(),
         frame,
         0, 0,
-        x_window_attrs.width, 50,
+        x_window_attrs.width, TITLE_HEIGHT,
         0, 0, BORDER_COLOR);
-    );
-    XSelectInput(display->getDisplayId(), frame, 
+    XGrabButton(display->getDisplayId(),
+                Button1, Mod1Mask, w, false,
+                ButtonPressMask | ButtonReleaseMask | ButtonMotionMask,
+                GrabModeAsync, GrabModeAsync,
+                None, None);
+    XGrabKey (display->getDisplayId(),
+              XKeysymToKeycode(display->getDisplayId(), XK_Tab),
+              Mod1Mask, w, false, GrabModeAsync, GrabModeAsync);
+    XSelectInput(display->getDisplayId(), frame,
                  SubstructureRedirectMask | SubstructureNotifyMask);
     XAddToSaveSet(display->getDisplayId(), w);
-    XReparentWindow(display->getDisplayId(), w, frame, 0, 50);
+    XReparentWindow(display->getDisplayId(), w, frame, 0, TITLE_HEIGHT);
     XMapWindow(display->getDisplayId(), frame);
     
 }
