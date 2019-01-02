@@ -109,18 +109,23 @@ void X11Application::onConfigureRequest(X11ConfigureRequestEvent e){
 }
 
 void X11Application::onButtonPress(X11ButtonEvent e){
+    LOG(INFO) << "onButtonPress event handled";
 }
 
 void X11Application::onButtonRelease(X11ButtonEvent e){
+    LOG(INFO) << "onButtonRelease event handled";
 }
 
 void X11Application::onMotionNotify(X11MotionEvent e){
+    LOG(INFO) << "onMotionEvent handled";
 }
 
 void X11Application::onKeyPress(X11KeyEvent e){
+    LOG(INFO) << "onKeyPress event handled";
 }
 
 void X11Application::onKeyRelease(X11KeyEvent e){
+    LOG(INFO) << "onKeyRelease event handled";
 }
 
 void X11Application::init(){
